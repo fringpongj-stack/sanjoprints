@@ -1476,3 +1476,1888 @@ specificService.required = false;
   });
 
 });
+/* ==========================================================
+   SANJO PRINTS — DYNAMIC INQUIRY SYSTEM
+========================================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const form = document.getElementById("dynamicInquiryForm");
+
+  if (!form) return;
+
+
+  /* ==========================================================
+     SERVICE DATA
+  ========================================================== */
+
+  const serviceData = {
+
+    "Printing & Photocopying": [
+
+      {
+        name: "Book Printing",
+        icon: "fa-book",
+        fields: "printing"
+      },
+
+      {
+        name: "Booklet Printing",
+        icon: "fa-book-open",
+        fields: "printing"
+      },
+
+      {
+        name: "Brochure Printing",
+        icon: "fa-file-lines",
+        fields: "printing"
+      },
+
+      {
+        name: "Business Card Printing",
+        icon: "fa-address-card",
+        fields: "printing"
+      },
+
+      {
+        name: "Flyer Printing",
+        icon: "fa-file",
+        fields: "printing"
+      },
+
+      {
+        name: "Poster Printing",
+        icon: "fa-image",
+        fields: "printing"
+      },
+
+      {
+        name: "Calendar Printing",
+        icon: "fa-calendar",
+        fields: "printing"
+      }
+
+    ],
+
+
+    /* =========================
+       BINDING
+    ========================= */
+
+    "Binding": [
+
+      {
+        name: "Spiral Binding",
+        icon: "fa-circle-notch",
+        fields: "spiralBinding"
+      },
+
+      {
+        name: "Comb Binding",
+        icon: "fa-bars",
+        fields: "combBinding"
+      },
+
+      {
+        name: "Tape Binding",
+        icon: "fa-tape",
+        fields: "tapeBinding"
+      },
+
+      {
+        name: "Hard Cover Binding",
+        icon: "fa-book-open",
+        fields: "hardCoverBinding"
+      },
+
+      {
+        name: "Soft Cover Binding",
+        icon: "fa-file",
+        fields: "softCoverBinding"
+      },
+
+      {
+        name: "Project Binding",
+        icon: "fa-folder",
+        fields: "projectBinding"
+      }
+
+    ],
+
+
+    /* =========================
+       LAMINATION
+    ========================= */
+
+    "Lamination": [
+
+      {
+        name: "A4 Lamination",
+        icon: "fa-file",
+        fields: "lamination"
+      },
+
+      {
+        name: "A3 Lamination",
+        icon: "fa-file",
+        fields: "lamination"
+      },
+
+      {
+        name: "ID Card Lamination",
+        icon: "fa-id-card",
+        fields: "lamination"
+      },
+
+      {
+        name: "Certificate Lamination",
+        icon: "fa-certificate",
+        fields: "lamination"
+      },
+
+      {
+        name: "Photo Lamination",
+        icon: "fa-image",
+        fields: "lamination"
+      },
+
+      {
+        name: "Document Lamination",
+        icon: "fa-file-lines",
+        fields: "lamination"
+      }
+
+    ],
+
+
+    /* =========================
+       SCANNING
+    ========================= */
+
+    "Scanning": [
+
+      {
+        name: "Document Scanning",
+        icon: "fa-file-lines",
+        fields: "scanning"
+      },
+
+      {
+        name: "Photo Scanning",
+        icon: "fa-image",
+        fields: "scanning"
+      },
+
+      {
+        name: "ID Scanning",
+        icon: "fa-id-card",
+        fields: "scanning"
+      },
+
+      {
+        name: "Passport Scanning",
+        icon: "fa-passport",
+        fields: "scanning"
+      },
+
+      {
+        name: "Bulk Document Scanning",
+        icon: "fa-files",
+        fields: "scanning"
+      },
+
+      {
+        name: "Scan to PDF",
+        icon: "fa-file-pdf",
+        fields: "scanning"
+      },
+
+      {
+        name: "Scan to Email",
+        icon: "fa-envelope",
+        fields: "scanning"
+      }
+
+    ],
+
+
+    /* =========================
+       GRAPHIC DESIGN
+    ========================= */
+
+    "Graphic Design": [
+
+      {
+        name: "Logo Design",
+        icon: "fa-pen-nib",
+        fields: "design"
+      },
+
+      {
+        name: "Business Card Design",
+        icon: "fa-address-card",
+        fields: "design"
+      },
+
+      {
+        name: "Poster Design",
+        icon: "fa-image",
+        fields: "design"
+      },
+
+      {
+        name: "Flyer Design",
+        icon: "fa-file",
+        fields: "design"
+      },
+
+      {
+        name: "Brochure Design",
+        icon: "fa-book-open",
+        fields: "design"
+      },
+
+      {
+        name: "Banner Design",
+        icon: "fa-panorama",
+        fields: "design"
+      },
+
+      {
+        name: "Invitation Design",
+        icon: "fa-envelope",
+        fields: "design"
+      },
+
+      {
+        name: "Certificate Design",
+        icon: "fa-certificate",
+        fields: "design"
+      },
+
+      {
+        name: "Social Media Design",
+        icon: "fa-share-nodes",
+        fields: "design"
+      },
+
+      {
+        name: "Letterhead Design",
+        icon: "fa-file-lines",
+        fields: "design"
+      }
+
+    ],
+
+
+    /* =========================
+       KRA
+    ========================= */
+
+    "KRA Services": [
+
+      {
+        name: "KRA PIN Registration",
+        icon: "fa-id-card",
+        fields: "kra"
+      },
+
+      {
+        name: "KRA Returns",
+        icon: "fa-file-invoice",
+        fields: "kra"
+      },
+
+      {
+        name: "KRA PIN Retrieval",
+        icon: "fa-key",
+        fields: "kra"
+      },
+
+      {
+        name: "KRA Account Assistance",
+        icon: "fa-user",
+        fields: "kra"
+      }
+
+    ],
+
+
+    /* =========================
+       PASSPORT
+    ========================= */
+
+    "Passport Photos": [
+
+      {
+        name: "Passport Photo",
+        icon: "fa-camera",
+        fields: "passport"
+      },
+
+      {
+        name: "Visa Photo",
+        icon: "fa-image",
+        fields: "passport"
+      },
+
+      {
+        name: "ID Photo",
+        icon: "fa-id-card",
+        fields: "passport"
+      }
+
+    ],
+
+
+    /* =========================
+       ONLINE APPLICATIONS
+    ========================= */
+
+    "Online Applications": [
+
+      {
+        name: "Government Application",
+        icon: "fa-building",
+        fields: "online"
+      },
+
+      {
+        name: "Job Application",
+        icon: "fa-briefcase",
+        fields: "online"
+      },
+
+      {
+        name: "School / University Application",
+        icon: "fa-graduation-cap",
+        fields: "online"
+      },
+
+      {
+        name: "Other Online Application",
+        icon: "fa-globe",
+        fields: "online"
+      }
+
+    ],
+
+
+    /* =========================
+       STATIONERY
+    ========================= */
+
+    "Stationery": [
+
+      {
+        name: "Receipt Books",
+        icon: "fa-receipt",
+        fields: "stationery"
+      },
+
+      {
+        name: "Invoice Books",
+        icon: "fa-file-invoice",
+        fields: "stationery"
+      },
+
+      {
+        name: "Letterheads",
+        icon: "fa-file-lines",
+        fields: "stationery"
+      },
+
+      {
+        name: "Business Cards",
+        icon: "fa-address-card",
+        fields: "stationery"
+      }
+
+    ]
+
+  };
+
+
+  /* ==========================================================
+     STATE
+  ========================================================== */
+
+  let inquiry = {
+
+    service: "",
+
+    subservice: "",
+
+    fieldType: "",
+
+    details: {}
+
+  };
+
+
+  /* ==========================================================
+     ELEMENTS
+  ========================================================== */
+
+  const steps = document.querySelectorAll(".inquiry-step");
+
+  const progressSteps =
+    document.querySelectorAll(".progress-step");
+
+  const subserviceContainer =
+    document.getElementById("subserviceContainer");
+
+  const specificFields =
+    document.getElementById("specificFields");
+
+  const selectedServiceText =
+    document.getElementById("selectedServiceText");
+
+  const selectedSubserviceText =
+    document.getElementById("selectedSubserviceText");
+
+  const inquiryReview =
+    document.getElementById("inquiryReview");
+
+
+  /* ==========================================================
+     CHANGE STEP
+  ========================================================== */
+
+  function goToStep(number) {
+
+    steps.forEach(step => {
+
+      step.classList.toggle(
+        "active",
+        Number(step.dataset.stepContent) === number
+      );
+
+    });
+
+
+    progressSteps.forEach(step => {
+
+      const stepNumber =
+        Number(step.dataset.step);
+
+      step.classList.toggle(
+        "active",
+        stepNumber <= number
+      );
+
+    });
+
+  }
+
+
+  /* ==========================================================
+     SERVICE SELECTED
+  ========================================================== */
+
+  document.querySelectorAll(".service-choice")
+    .forEach(button => {
+
+      button.addEventListener("click", () => {
+
+        inquiry.service =
+          button.dataset.service;
+
+        inquiry.subservice = "";
+
+        inquiry.details = {};
+
+        selectedServiceText.textContent =
+          inquiry.service;
+
+
+        renderSubservices();
+
+        goToStep(2);
+
+      });
+
+    });
+
+
+  /* ==========================================================
+     RENDER SUBSERVICES
+  ========================================================== */
+
+  function renderSubservices() {
+
+    subserviceContainer.innerHTML = "";
+
+    const services =
+      serviceData[inquiry.service] || [];
+
+
+    services.forEach(item => {
+
+      const button =
+        document.createElement("button");
+
+      button.type = "button";
+
+      button.className =
+        "subservice-option";
+
+
+      button.innerHTML = `
+
+        <span class="subservice-option-left">
+
+          <input type="radio"
+                 name="selectedSubservice">
+
+          <i class="fa-solid ${item.icon}"></i>
+
+          <strong>${item.name}</strong>
+
+        </span>
+
+        <i class="fa-solid fa-chevron-right"></i>
+
+      `;
+
+
+      button.addEventListener("click", () => {
+
+        inquiry.subservice =
+          item.name;
+
+        inquiry.fieldType =
+          item.fields;
+
+
+        selectedSubserviceText.textContent =
+          item.name;
+
+
+        renderSpecificFields(item.fields);
+
+
+        goToStep(3);
+
+      });
+
+
+      subserviceContainer.appendChild(button);
+
+    });
+
+  }
+
+
+  /* ==========================================================
+     SPECIFIC FIELDS
+  ========================================================== */
+
+  function renderSpecificFields(type) {
+
+    let html = "";
+
+
+    /* =========================
+       GENERAL PRINTING
+    ========================= */
+
+    if (type === "printing") {
+
+      html = `
+
+        <div class="specific-fields-grid">
+
+          <div class="form-group">
+
+            <label>Number of Copies *</label>
+
+            <input
+              type="number"
+              name="copies"
+              min="1"
+              placeholder="e.g. 10"
+              required>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>Paper Size *</label>
+
+            <select name="paperSize" required>
+
+              <option value="">Choose size</option>
+              <option>A4</option>
+              <option>A3</option>
+              <option>A5</option>
+              <option>Other</option>
+
+            </select>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>Print Colour *</label>
+
+            <select name="printColor" required>
+
+              <option value="">Choose</option>
+              <option>Black & White</option>
+              <option>Colour</option>
+
+            </select>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>Pages</label>
+
+            <input
+              type="number"
+              name="pages"
+              min="1"
+              placeholder="Number of pages">
+
+          </div>
+
+
+          <div class="form-group specific-field-full">
+
+            <label>Upload Document</label>
+
+            <div class="file-upload">
+
+              <i class="fa-solid fa-cloud-arrow-up"></i>
+
+              <input
+                type="file"
+                name="document"
+                accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
+
+              <small>
+                PDF, DOC, DOCX, JPG or PNG
+              </small>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }
+
+
+    /* =========================
+       SPIRAL / COMB / TAPE
+    ========================= */
+
+    else if (
+      type === "spiralBinding" ||
+      type === "combBinding" ||
+      type === "tapeBinding"
+    ) {
+
+      html = `
+
+        <div class="specific-fields-grid">
+
+          <div class="form-group">
+
+            <label>Number of Copies *</label>
+
+            <input
+              type="number"
+              name="copies"
+              min="1"
+              placeholder="e.g. 2"
+              required>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>Number of Pages *</label>
+
+            <input
+              type="number"
+              name="pages"
+              min="1"
+              placeholder="e.g. 85"
+              required>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>Paper Size *</label>
+
+            <select name="paperSize" required>
+
+              <option value="">Choose size</option>
+              <option>A4</option>
+              <option>A3</option>
+              <option>A5</option>
+
+            </select>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>Cover Type *</label>
+
+            <select name="coverType" required>
+
+              <option value="">Choose cover</option>
+              <option>Clear Front Cover</option>
+              <option>Black Front & Back</option>
+              <option>Clear Front & Back</option>
+              <option>Card Cover</option>
+
+            </select>
+
+          </div>
+
+
+          <div class="form-group specific-field-full">
+
+            <label>Upload Document</label>
+
+            <div class="file-upload">
+
+              <i class="fa-solid fa-cloud-arrow-up"></i>
+
+              <input
+                type="file"
+                name="document"
+                accept=".pdf,.doc,.docx">
+
+              <small>
+                Upload your project/document
+              </small>
+
+            </div>
+
+          </div>
+
+
+          <div class="form-group specific-field-full">
+
+            <label>Additional Instructions</label>
+
+            <textarea
+              name="instructions"
+              rows="3"
+              placeholder="Any special instructions?">
+            </textarea>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }
+
+
+    /* =========================
+       HARD COVER
+    ========================= */
+
+    else if (type === "hardCoverBinding") {
+
+      html = `
+
+        <div class="specific-fields-grid">
+
+          <div class="form-group">
+
+            <label>Number of Copies *</label>
+
+            <input
+              type="number"
+              name="copies"
+              min="1"
+              required>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>Number of Pages *</label>
+
+            <input
+              type="number"
+              name="pages"
+              min="1"
+              required>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>Paper Size *</label>
+
+            <select name="paperSize" required>
+
+              <option value="">Choose size</option>
+              <option>A4</option>
+              <option>A3</option>
+              <option>A5</option>
+
+            </select>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>Cover Colour</label>
+
+            <select name="coverColor">
+
+              <option>Black</option>
+              <option>Blue</option>
+              <option>Red</option>
+              <option>Green</option>
+              <option>Other</option>
+
+            </select>
+
+          </div>
+
+
+          <div class="form-group specific-field-full">
+
+            <label>Title / Text on Cover</label>
+
+            <input
+              type="text"
+              name="coverText"
+              placeholder="e.g. PROJECT REPORT 2026">
+
+          </div>
+
+
+          <div class="form-group specific-field-full">
+
+            <label>Upload Document</label>
+
+            <div class="file-upload">
+
+              <i class="fa-solid fa-cloud-arrow-up"></i>
+
+              <input
+                type="file"
+                name="document"
+                accept=".pdf,.doc,.docx">
+
+            </div>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }
+
+
+    /* =========================
+       SOFT COVER
+    ========================= */
+
+    else if (type === "softCoverBinding") {
+
+      html = `
+
+        <div class="specific-fields-grid">
+
+          <div class="form-group">
+
+            <label>Number of Copies *</label>
+
+            <input
+              type="number"
+              name="copies"
+              min="1"
+              required>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>Number of Pages *</label>
+
+            <input
+              type="number"
+              name="pages"
+              min="1"
+              required>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>Paper Size *</label>
+
+            <select name="paperSize" required>
+
+              <option value="">Choose size</option>
+              <option>A4</option>
+              <option>A5</option>
+
+            </select>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>Cover Type</label>
+
+            <select name="coverType">
+
+              <option>Clear Cover</option>
+              <option>Card Cover</option>
+              <option>Printed Cover</option>
+
+            </select>
+
+          </div>
+
+
+          <div class="form-group specific-field-full">
+
+            <label>Upload Document</label>
+
+            <div class="file-upload">
+
+              <i class="fa-solid fa-cloud-arrow-up"></i>
+
+              <input
+                type="file"
+                name="document"
+                accept=".pdf,.doc,.docx">
+
+            </div>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }
+
+
+    /* =========================
+       PROJECT BINDING
+    ========================= */
+
+    else if (type === "projectBinding") {
+
+      html = `
+
+        <div class="specific-fields-grid">
+
+          <div class="form-group">
+
+            <label>Number of Copies *</label>
+
+            <input
+              type="number"
+              name="copies"
+              min="1"
+              required>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>Number of Pages *</label>
+
+            <input
+              type="number"
+              name="pages"
+              min="1"
+              required>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>Paper Size *</label>
+
+            <select name="paperSize" required>
+
+              <option value="">Choose size</option>
+              <option>A4</option>
+              <option>A3</option>
+
+            </select>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>Project Type</label>
+
+            <select name="projectType">
+
+              <option>University Project</option>
+              <option>School Project</option>
+              <option>Research Project</option>
+              <option>Business Report</option>
+              <option>Other</option>
+
+            </select>
+
+          </div>
+
+
+          <div class="form-group specific-field-full">
+
+            <label>Upload Project</label>
+
+            <div class="file-upload">
+
+              <i class="fa-solid fa-cloud-arrow-up"></i>
+
+              <input
+                type="file"
+                name="document"
+                accept=".pdf,.doc,.docx">
+
+            </div>
+
+          </div>
+
+
+          <div class="form-group specific-field-full">
+
+            <label>Additional Instructions</label>
+
+            <textarea
+              name="instructions"
+              rows="3"
+              placeholder="Tell us anything else we should know">
+            </textarea>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }
+
+
+    /* =========================
+       LAMINATION
+    ========================= */
+
+    else if (type === "lamination") {
+
+      html = `
+
+        <div class="specific-fields-grid">
+
+          <div class="form-group">
+
+            <label>Number of Copies *</label>
+
+            <input
+              type="number"
+              name="copies"
+              min="1"
+              required>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>Material Type</label>
+
+            <select name="materialType">
+
+              <option>Document</option>
+              <option>Certificate</option>
+              <option>ID Card</option>
+              <option>Photo</option>
+              <option>Other</option>
+
+            </select>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>Finish</label>
+
+            <select name="finish">
+
+              <option>Glossy</option>
+              <option>Matte</option>
+
+            </select>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>Thickness</label>
+
+            <select name="thickness">
+
+              <option>75 microns</option>
+              <option>125 microns</option>
+
+            </select>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }
+
+
+    /* =========================
+       SCANNING
+    ========================= */
+
+    else if (type === "scanning") {
+
+      html = `
+
+        <div class="specific-fields-grid">
+
+          <div class="form-group">
+
+            <label>Number of Pages *</label>
+
+            <input
+              type="number"
+              name="pages"
+              min="1"
+              required>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>Scan Type</label>
+
+            <select name="scanType">
+
+              <option>Black & White</option>
+              <option>Colour</option>
+
+            </select>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>Output Format</label>
+
+            <select name="outputFormat">
+
+              <option>PDF</option>
+              <option>JPG</option>
+              <option>PNG</option>
+
+            </select>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>Send To</label>
+
+            <select name="delivery">
+
+              <option>Email</option>
+              <option>WhatsApp</option>
+              <option>USB</option>
+              <option>Collect at shop</option>
+
+            </select>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }
+
+
+    /* =========================
+       GRAPHIC DESIGN
+    ========================= */
+
+    else if (type === "design") {
+
+      html = `
+
+        <div class="specific-fields-grid">
+
+          <div class="form-group specific-field-full">
+
+            <label>Design Purpose *</label>
+
+            <input
+              type="text"
+              name="designPurpose"
+              placeholder="What will the design be used for?"
+              required>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>Preferred Style</label>
+
+            <input
+              type="text"
+              name="style"
+              placeholder="Modern, professional, simple...">
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>Preferred Colours</label>
+
+            <input
+              type="text"
+              name="colors"
+              placeholder="e.g. Blue and white">
+
+          </div>
+
+
+          <div class="form-group specific-field-full">
+
+            <label>Upload Reference</label>
+
+            <div class="file-upload">
+
+              <i class="fa-solid fa-cloud-arrow-up"></i>
+
+              <input
+                type="file"
+                name="reference"
+                accept="image/*,.pdf">
+
+            </div>
+
+          </div>
+
+
+          <div class="form-group specific-field-full">
+
+            <label>Design Instructions</label>
+
+            <textarea
+              name="instructions"
+              rows="4"
+              placeholder="Tell us what you want designed">
+            </textarea>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }
+
+
+    /* =========================
+       KRA
+    ========================= */
+
+    else if (type === "kra") {
+
+      html = `
+
+        <div class="specific-fields-grid">
+
+          <div class="form-group">
+
+            <label>Service Type *</label>
+
+            <select name="kraType" required>
+
+              <option value="">Choose</option>
+              <option>PIN Registration</option>
+              <option>Returns</option>
+              <option>PIN Retrieval</option>
+              <option>Account Assistance</option>
+
+            </select>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>KRA PIN</label>
+
+            <input
+              type="text"
+              name="kraPin"
+              placeholder="If applicable">
+
+          </div>
+
+
+          <div class="form-group specific-field-full">
+
+            <label>What assistance do you need?</label>
+
+            <textarea
+              name="instructions"
+              rows="4"
+              placeholder="Describe what you need help with">
+            </textarea>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }
+
+
+    /* =========================
+       PASSPORT
+    ========================= */
+
+    else if (type === "passport") {
+
+      html = `
+
+        <div class="specific-fields-grid">
+
+          <div class="form-group">
+
+            <label>Number of Copies *</label>
+
+            <input
+              type="number"
+              name="copies"
+              min="1"
+              value="1"
+              required>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>Photo Type</label>
+
+            <select name="photoType">
+
+              <option>Passport</option>
+              <option>Visa</option>
+              <option>ID</option>
+
+            </select>
+
+          </div>
+
+
+          <div class="form-group specific-field-full">
+
+            <label>Additional Instructions</label>
+
+            <textarea
+              name="instructions"
+              rows="3"
+              placeholder="Any special requirements?">
+            </textarea>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }
+
+
+    /* =========================
+       ONLINE
+    ========================= */
+
+    else if (type === "online") {
+
+      html = `
+
+        <div class="form-group">
+
+          <label>What application do you need help with? *</label>
+
+          <textarea
+            name="instructions"
+            rows="5"
+            required
+            placeholder="Tell us what you need help applying for...">
+          </textarea>
+
+        </div>
+
+      `;
+
+    }
+
+
+    /* =========================
+       STATIONERY
+    ========================= */
+
+    else if (type === "stationery") {
+
+      html = `
+
+        <div class="specific-fields-grid">
+
+          <div class="form-group">
+
+            <label>Quantity *</label>
+
+            <input
+              type="number"
+              name="quantity"
+              min="1"
+              required>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>Size</label>
+
+            <select name="paperSize">
+
+              <option>A4</option>
+              <option>A5</option>
+              <option>Other</option>
+
+            </select>
+
+          </div>
+
+
+          <div class="form-group specific-field-full">
+
+            <label>Additional Instructions</label>
+
+            <textarea
+              name="instructions"
+              rows="4"
+              placeholder="Tell us what you need">
+            </textarea>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }
+
+
+    specificFields.innerHTML = html;
+
+
+    /* File display */
+
+    const fileInputs =
+      specificFields.querySelectorAll(
+        'input[type="file"]'
+      );
+
+    fileInputs.forEach(input => {
+
+      input.addEventListener("change", () => {
+
+        if (input.files.length) {
+
+          input.parentElement.querySelector("small")
+            .textContent =
+            input.files[0].name;
+
+        }
+
+      });
+
+    });
+
+  }
+
+
+  /* ==========================================================
+     NEXT FROM STEP 3
+  ========================================================== */
+
+  const step3 =
+    document.querySelector(
+      '[data-step-content="3"]'
+    );
+
+
+  const nextButton =
+    document.createElement("button");
+
+  nextButton.type = "button";
+
+  nextButton.className =
+    "btn btn-primary";
+
+  nextButton.innerHTML =
+    `Continue <i class="fa-solid fa-arrow-right"></i>`;
+
+
+  step3.appendChild(nextButton);
+
+
+  nextButton.addEventListener("click", () => {
+
+    if (!validateSpecificFields()) {
+      return;
+    }
+
+    collectSpecificDetails();
+
+    buildReview();
+
+    goToStep(4);
+
+  });
+
+
+  /* ==========================================================
+     VALIDATE STEP 3
+  ========================================================== */
+
+  function validateSpecificFields() {
+
+    const fields =
+      specificFields.querySelectorAll(
+        "input, select, textarea"
+      );
+
+    for (const field of fields) {
+
+      if (
+        field.hasAttribute("required") &&
+        !field.value.trim()
+      ) {
+
+        field.focus();
+
+        field.reportValidity();
+
+        return false;
+
+      }
+
+    }
+
+    return true;
+
+  }
+
+
+  /* ==========================================================
+     COLLECT DETAILS
+  ========================================================== */
+
+  function collectSpecificDetails() {
+
+    inquiry.details = {};
+
+    const fields =
+      specificFields.querySelectorAll(
+        "input, select, textarea"
+      );
+
+
+    fields.forEach(field => {
+
+      if (field.type === "file") {
+
+        if (field.files.length) {
+
+          inquiry.details[field.name] =
+            field.files[0].name;
+
+        }
+
+      }
+
+      else if (field.value.trim()) {
+
+        inquiry.details[field.name] =
+          field.value.trim();
+
+      }
+
+    });
+
+  }
+
+
+  /* ==========================================================
+     REVIEW
+  ========================================================== */
+
+  function buildReview() {
+
+    let html = `
+
+      <div class="review-title">
+        Your Service
+      </div>
+
+      <div class="review-row">
+        <span>Service</span>
+        <strong>${escapeHtml(inquiry.service)}</strong>
+      </div>
+
+      <div class="review-row">
+        <span>Specific Service</span>
+        <strong>${escapeHtml(inquiry.subservice)}</strong>
+      </div>
+
+    `;
+
+
+    Object.entries(inquiry.details)
+      .forEach(([key, value]) => {
+
+        const label =
+          formatLabel(key);
+
+        html += `
+
+          <div class="review-row">
+
+            <span>${escapeHtml(label)}</span>
+
+            <strong>
+              ${escapeHtml(value)}
+            </strong>
+
+          </div>
+
+        `;
+
+      });
+
+
+    inquiryReview.innerHTML = html;
+
+  }
+
+
+  /* ==========================================================
+     FORMAT FIELD LABEL
+  ========================================================== */
+
+  function formatLabel(text) {
+
+    return text
+
+      .replace(/([A-Z])/g, " $1")
+
+      .replace(/^./, char =>
+        char.toUpperCase()
+      );
+
+  }
+
+
+  /* ==========================================================
+     BACK BUTTONS
+  ========================================================== */
+
+  document.querySelectorAll(".back-step")
+    .forEach(button => {
+
+      button.addEventListener("click", () => {
+
+        const target =
+          Number(button.dataset.back);
+
+        goToStep(target);
+
+      });
+
+    });
+
+
+  /* ==========================================================
+     SUBMIT
+  ========================================================== */
+
+  form.addEventListener("submit", event => {
+
+    event.preventDefault();
+
+
+    const name =
+      document.getElementById(
+        "inquiryName"
+      ).value.trim();
+
+
+    const phone =
+      document.getElementById(
+        "inquiryPhone"
+      ).value.trim();
+
+
+    const email =
+      document.getElementById(
+        "inquiryEmail"
+      ).value.trim();
+
+
+    const preferred =
+      document.getElementById(
+        "preferredOption"
+      ).value;
+
+
+    if (!name || !phone) {
+
+      alert(
+        "Please enter your name and phone number."
+      );
+
+      return;
+
+    }
+
+
+    let message =
+
+`*NEW SANJO PRINTS INQUIRY*
+
+----------------------------
+
+*CUSTOMER DETAILS*
+
+Name: ${name}
+Phone: ${phone}
+Email: ${email || "Not provided"}
+
+----------------------------
+
+*SERVICE*
+
+Service: ${inquiry.service}
+Specific Service: ${inquiry.subservice}
+
+----------------------------
+
+*ORDER DETAILS*
+`;
+
+
+    Object.entries(inquiry.details)
+      .forEach(([key, value]) => {
+
+        message +=
+          `\n${formatLabel(key)}: ${value}`;
+
+      });
+
+
+    message += `
+
+----------------------------
+
+Preferred Option: ${preferred}
+
+----------------------------
+
+Sent from Sanjo Prints Website`;
+
+
+    const whatsappNumber =
+      "254742855644";
+
+
+    const whatsappURL =
+      `https://wa.me/${whatsappNumber}?text=${
+        encodeURIComponent(message)
+      }`;
+
+
+    window.open(
+      whatsappURL,
+      "_blank"
+    );
+
+  });
+
+
+  /* ==========================================================
+     ESCAPE HTML
+  ========================================================== */
+
+  function escapeHtml(value) {
+
+    return String(value)
+
+      .replace(/&/g, "&amp;")
+
+      .replace(/</g, "&lt;")
+
+      .replace(/>/g, "&gt;")
+
+      .replace(/"/g, "&quot;")
+
+      .replace(/'/g, "&#039;");
+
+  }
+
+
+});
