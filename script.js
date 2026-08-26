@@ -1352,3 +1352,28 @@ document.addEventListener("keydown", function(event) {
   }
 
 });
+/* =========================================================
+   SERVICE SUB-SERVICE ACCORDION
+========================================================= */
+
+document.querySelectorAll(".subservice-toggle").forEach(button => {
+
+  button.addEventListener("click", function () {
+
+    const currentCard = this.closest(".expandable-service");
+
+    const isAlreadyOpen = currentCard.classList.contains("expanded");
+
+    // Close all other service cards
+    document.querySelectorAll(".expandable-service").forEach(card => {
+      card.classList.remove("expanded");
+    });
+
+    // Open the selected card if it wasn't already open
+    if (!isAlreadyOpen) {
+      currentCard.classList.add("expanded");
+    }
+
+  });
+
+});
