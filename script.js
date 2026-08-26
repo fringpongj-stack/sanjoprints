@@ -3361,3 +3361,86 @@ Sent from Sanjo Prints Website`;
 
 
 });
+/* ==========================================================
+   MAKE INQUIRY MODAL — CLOSE CONTROLS
+========================================================== */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const orderModal = document.getElementById("orderModal");
+    const modalClose = document.getElementById("modalClose");
+
+    if (!orderModal || !modalClose) {
+        console.warn("Sanjo Prints: Inquiry modal elements not found.");
+        return;
+    }
+
+
+    /* =========================
+       CLOSE FUNCTION
+    ========================= */
+
+    function closeInquiryModal() {
+
+        orderModal.classList.remove("active");
+        orderModal.classList.remove("open");
+        orderModal.style.display = "none";
+
+        document.body.classList.remove("modal-open");
+        document.body.style.overflow = "";
+
+    }
+
+
+    /* =========================
+       X BUTTON
+    ========================= */
+
+    modalClose.addEventListener("click", function (event) {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        closeInquiryModal();
+
+    });
+
+
+    /* =========================
+       CLICK OUTSIDE MODAL
+    ========================= */
+
+    orderModal.addEventListener("click", function (event) {
+
+        if (event.target === orderModal) {
+
+            closeInquiryModal();
+
+        }
+
+    });
+
+
+    /* =========================
+       ESCAPE KEY
+    ========================= */
+
+    document.addEventListener("keydown", function (event) {
+
+        if (
+            event.key === "Escape" &&
+            (
+                orderModal.classList.contains("active") ||
+                orderModal.classList.contains("open") ||
+                orderModal.style.display === "flex" ||
+                orderModal.style.display === "block"
+            )
+        ) {
+
+            closeInquiryModal();
+
+        }
+
+    });
+
+});
