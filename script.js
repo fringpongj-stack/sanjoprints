@@ -1373,7 +1373,106 @@ document.querySelectorAll(".subservice-toggle").forEach(button => {
     if (!isAlreadyOpen) {
       currentCard.classList.add("expanded");
     }
+const serviceSelect = document.getElementById("inquireService");
+const specificService = document.getElementById("specificService");
 
+const services = {
+  printing: [
+    "Black & White Printing",
+    "Colour Printing",
+    "Photocopying",
+    "Large Format Printing"
+  ],
+
+  scanning: [
+    "Document Scanning",
+    "Photo Scanning",
+    "ID Scanning"
+  ],
+
+  computer: [
+    "Typing",
+    "Document Editing",
+    "CV Preparation",
+    "Internet Services",
+    "File Conversion"
+  ],
+
+  graphic: [
+    "Logo Design",
+    "Poster Design",
+    "Flyer Design",
+    "Business Card Design",
+    "Social Media Design",
+    "Banner Design"
+  ],
+
+  kra: [
+    "KRA PIN Registration",
+    "KRA PIN Retrieval",
+    "Tax Returns",
+    "Tax Compliance Certificate",
+    "iTax Services"
+  ],
+
+  passport: [
+    "Passport Photos",
+    "Visa Photos",
+    "ID Photos"
+  ],
+
+  online: [
+    "Job Applications",
+    "College Applications",
+    "Government Applications",
+    "Online Account Registration"
+  ],
+
+  binding: [
+    "Spiral Binding",
+    "Comb Binding",
+    "Book Binding"
+  ],
+
+  lamination: [
+    "A4 Lamination",
+    "A3 Lamination",
+    "ID Card Lamination",
+    "Document Lamination"
+  ]
+};
+
+serviceSelect.addEventListener("change", function () {
+  const selectedService = this.value;
+
+  // Clear previous options
+  specificService.innerHTML =
+    '<option value="">Choose specific service</option>';
+
+  // If nothing selected
+  if (!selectedService) {
+    specificService.style.display = "none";
+    specificService.required = false;
+    return;
+  }
+
+  // Add specific services
+  services[selectedService].forEach(function (service) {
+    const option = document.createElement("option");
+
+    option.value = service;
+    option.textContent = service;
+
+    specificService.appendChild(option);
+  });
+
+  specificService.style.display = "block";
+  specificService.required = true;
+});
+
+// Hide it when page loads
+specificService.style.display = "none";
+specificService.required = false;
   });
 
 });
