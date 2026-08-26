@@ -4400,6 +4400,174 @@ ul {
     padding: 9px 16px;
     font-size: 13px;
   }
+   /* =========================================================
+   EXPANDABLE SERVICE SUB-SERVICES
+========================================================= */
+
+.expandable-service {
+  transition: all 0.3s ease;
+}
+
+.expandable-service.expanded {
+  transform: translateY(-4px);
+}
+
+.subservice-toggle {
+  width: 100%;
+  margin-top: 20px;
+  padding: 13px 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border: 1px solid #dbe3ef;
+  border-radius: 10px;
+
+  background: #f7f9fc;
+  color: #163b72;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.subservice-toggle:hover {
+  background: #163b72;
+  color: #ffffff;
+}
+
+.subservice-toggle i {
+  transition: transform 0.3s ease;
+}
+
+.expandable-service.expanded .subservice-toggle i {
+  transform: rotate(180deg);
+}
+
+.subservices {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+
+  margin-top: 0;
+
+  transition:
+    max-height 0.45s ease,
+    opacity 0.3s ease,
+    margin-top 0.3s ease;
+}
+
+.expandable-service.expanded .subservices {
+  max-height: 1000px;
+  opacity: 1;
+  margin-top: 12px;
+}
+
+.subservice {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 13px 10px;
+
+  border: none;
+  border-bottom: 1px solid #edf0f5;
+
+  background: transparent;
+
+  color: #222;
+  text-align: left;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    padding-left 0.25s ease;
+}
+
+.subservice:last-child {
+  border-bottom: none;
+}
+
+.subservice span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.subservice span i {
+  width: 20px;
+  text-align: center;
+  color: #2459a6;
+}
+
+.subservice > i {
+  font-size: 12px;
+  color: #8b96a7;
+  transition: transform 0.25s ease;
+}
+
+.subservice:hover {
+  background: #f5f8fc;
+  color: #163b72;
+  padding-left: 16px;
+}
+
+.subservice:hover > i {
+  transform: translateX(4px);
+  color: #163b72;
+}
+
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+  .expandable-service {
+    width: 100%;
+  }
+
+  .subservice-toggle {
+    min-height: 48px;
+    font-size: 13px;
+  }
+
+  .subservice {
+    min-height: 48px;
+    font-size: 13px;
+  }
+
+  .subservice span {
+    gap: 8px;
+  }
+
+}
+
+
+/* SMALL PHONES */
+@media (max-width: 480px) {
+
+  .subservice-toggle {
+    padding: 12px;
+    font-size: 12px;
+  }
+
+  .subservice {
+    padding: 12px 8px;
+    font-size: 12px;
+  }
+
+}
 
 }
 
