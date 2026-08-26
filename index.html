@@ -2118,13 +2118,38 @@
                 <i class="fa-solid fa-location-dot"></i>
               </div>
 
-              <div>
-                <span>Visit Us</span>
+             <div class="contact-info-item">
+  <div class="contact-icon">
+    <i class="fa-solid fa-location-dot"></i>
+  </div>
 
-                <strong>KIKUYU NEAR MUM'S HOTEL</strong>
-              </div>
+ <div class="contact-info-card location-card">
 
-            </div>
+  <div class="contact-icon">
+    <i class="fa-solid fa-location-dot"></i>
+  </div>
+
+  <div>
+    <span>Our Location</span>
+
+    <strong>Sanjo Prints</strong>
+
+    <p>Near Mum's Hotel, Kikuyu</p>
+    <p>Kiambu County, Kenya</p>
+
+    <a
+      href="https://www.google.com/maps/search/?api=1&query=Sanjo+Prints+Kikuyu"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="location-link"
+    >
+      <i class="fa-solid fa-map-location-dot"></i>
+      View on Google Maps
+    </a>
+
+  </div>
+
+</div>
 
 
             <div class="business-hours">
@@ -2185,29 +2210,28 @@
 
             <div class="form-group">
 
-              <label for="contactService">f
+              <label for="contactService">
                 Service Needed
               </label>
 
-              <select id="contactService" name="service">
+              <select id="inquireService" required>
+  <option value="">Choose service</option>
 
-                <option value="">
-                  Select a service
-                </option>
+  <option value="printing">Printing & Photocopying</option>
+  <option value="scanning">Scanning</option>
+  <option value="computer">Computer Services</option>
+  <option value="graphic">Graphic Design</option>
+  <option value="kra">KRA Services</option>
+  <option value="passport">Passport Photos</option>
+  <option value="online">Online Applications</option>
+  <option value="binding">Binding</option>
+  <option value="lamination">Lamination</option>
+</select>
 
-                <option>Printing & Photocopying</option>
-                <option>Scanning</option>
-                <option>Computer Services</option>
-                <option>Graphic Design</option>
-                <option>KRA Services</option>
-                <option>Passport Photos</option>
-                <option>Online Applications</option>
-                <option>Binding</option>
-                <option>Lamination</option>
-
-              </select>
-
-            </div>
+<!-- Specific service -->
+<select id="specificService" required>
+  <option value="">Choose specific service</option>
+</select>
 
 
             <div class="form-group">
@@ -2390,7 +2414,7 @@
 
     <div class="order-modal" role="dialog" aria-modal="true" aria-labelledby="orderModalTitle">
 
-      <button class="modal-close" id="modalClose" aria-label="Close order form">
+      <button class="modal-close" id="modalClose" aria-label="Close inquiry form">
 
         <i class="fa-solid fa-xmark"></i>
 
@@ -2414,15 +2438,15 @@
       </div>
 
 
-      <form id="orderForm">
+      <form id="inquiryForm">
 
         <div class="form-group">
 
-          <label for="orderName">
+          <label for="inquiryName">
             Full Name
           </label>
 
-          <input type="text" id="orderName" required placeholder="Your full name">
+          <input type="text" id="inquiryName" required placeholder="Your full name">
 
         </div>
 
@@ -2431,22 +2455,22 @@
 
           <div class="form-group">
 
-            <label for="orderPhone">
+            <label for="inquirePhone">
               Phone
             </label>
 
-            <input type="tel" id="orderPhone" required placeholder="07XX XXX XXX">
+            <input type="tel" id="inquirePhone" required placeholder="07XX XXX XXX">
 
           </div>
 
 
           <div class="form-group">
 
-            <label for="orderService">
+            <label for="inquireService">
               Service
             </label>
 
-            <select id="orderService" required>
+            <select id="inquireService" required>
 
               <option value="">
                 Choose service
@@ -2482,11 +2506,11 @@
 
         <div class="form-group">
 
-          <label for="orderDelivery">
+          <label for="makeinquiry">
             Preferred option
           </label>
 
-          <select id="orderDelivery">
+          <select id="makeinquiry">
 
             <option>
               Visit the shop
