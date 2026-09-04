@@ -12,7 +12,7 @@
   <meta name="keywords"
     content="Sanjo Prints, printing Kenya, cyber services, KRA services, passport photos, graphic design, scanning, binding, lamination, online applications">
 
-  <meta name="author" content="Sanjo Prints">
+  <meta name="author" content="Sanjo Printing">
 
   <title>Sanjo Prints | Printing, Design & Digital Services</title>
 
@@ -28,6 +28,43 @@
 
   <!-- Main CSS -->
   <link rel="stylesheet" href="style.css">
+
+
+  <style id="sanjo-dazzle-inspired-rebrand">
+    :root {
+      --sanjo-blue: #1261d6;
+      --sanjo-blue-dark: #0b3f91;
+      --sanjo-yellow: #ffcc33;
+      --sanjo-ink: #14213d;
+      --sanjo-soft: #f5f8fc;
+    }
+
+    body { background: #fff; color: var(--sanjo-ink); }
+    .top-bar { background: var(--sanjo-blue-dark) !important; color: #fff !important; }
+    .top-bar a { color: #fff !important; }
+    .header { background: #fff !important; border-bottom: 1px solid #e7edf5 !important; box-shadow: 0 4px 18px rgba(15, 47, 90, .06); }
+    .logo-icon { background: var(--sanjo-blue) !important; }
+    .logo-text strong { color: var(--sanjo-ink) !important; }
+    .logo-text span { color: var(--sanjo-blue) !important; }
+    .nav-link:hover, .nav-link.active { color: var(--sanjo-blue) !important; }
+    .nav-make, .btn-primary { background: var(--sanjo-blue) !important; border-color: var(--sanjo-blue) !important; }
+    .nav-make:hover, .btn-primary:hover { background: var(--sanjo-blue-dark) !important; }
+    .hero { background: linear-gradient(135deg, #f8fbff 0%, #ffffff 58%, #eef5ff 100%) !important; }
+    .hero h1 span, .section-heading h2 span, .about-content h2 span, .cta-content h2 span { color: var(--sanjo-blue) !important; }
+    .hero-badge { color: var(--sanjo-blue-dark) !important; border-color: rgba(18,97,214,.18) !important; background: rgba(18,97,214,.06) !important; }
+    .pulse-dot { background: var(--sanjo-blue) !important; }
+    .service-card, .portfolio-card, .stat-box, .contact-info-card { border-radius: 12px !important; border: 1px solid #e4ebf4 !important; box-shadow: 0 8px 28px rgba(20, 50, 90, .06) !important; }
+    .service-card:hover, .portfolio-card:hover { transform: translateY(-5px); box-shadow: 0 16px 34px rgba(20, 50, 90, .11) !important; }
+    .filter-btn.active, .portfolio-filter.active { background: var(--sanjo-blue) !important; color: #fff !important; }
+    .cta-card { background: linear-gradient(135deg, var(--sanjo-blue-dark), var(--sanjo-blue)) !important; border-radius: 14px !important; }
+    .footer { background: #0d1b2a !important; }
+    .whatsapp-float { background: #20c76b !important; }
+    .location-link { color: var(--sanjo-blue) !important; font-weight: 600; }
+    .top-location { font-weight: 600; }
+    @media (max-width: 700px) {
+      .top-location { font-size: 12px; }
+    }
+  </style>
 </head>
 
 <body>
@@ -61,10 +98,10 @@
     <div class="container top-bar-inner">
 
       <div class="top-left">
-        <span>
+        <a class="top-location" href="https://www.google.com/maps/search/?api=1&query=Sanjo+Prints+Kikuyu" target="_blank" rel="noopener noreferrer" aria-label="Open Sanjo Prints location in Google Maps">
           <i class="fa-solid fa-location-dot"></i>
-          Your Trusted Digital & Printing Centre
-        </span>
+          Near Mum's Hotel, Kikuyu
+        </a>
 
         <span>
           <i class="fa-solid fa-clock"></i>
@@ -139,9 +176,9 @@
           Contact
         </a>
 
-        <a href="#order" class="nav-make inquiry">
+        <a href="#order" class="nav-start a quote">
           <i class="fa-solid fa-paper-plane"></i>
-          MAKE INQUIRY
+          START A QUOTE
         </a>
 
       </nav>
@@ -200,10 +237,10 @@
 
             <a href="#order" class="btn btn-primary">
               <i class="fa-solid fa-paper-plane"></i>
-              MAKE INQUIRY
+              START A QUOTE
             </a>
 
-            <a href="https://wa.me/+254742855644" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">
+            <a href="https://wa.me/254742855644" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">
 
               <i class="fa-brands fa-whatsapp"></i>
               WhatsApp Us
@@ -334,7 +371,7 @@
             <div class="hero-card-footer">
 
               <div>
-                <span>Need assistance?</span>
+                <span>Need help with your order?</span>
                 <strong>Talk to Sanjo Prints</strong>
               </div>
 
@@ -1999,10 +2036,10 @@
 
               <button class="btn btn-white open-order">
                 <i class="fa-solid fa-paper-plane"></i>
-                Make Inquiry
+                Start a Quote
               </button>
 
-              <a href="https://wa.me/+254742855644" target="_blank" rel="noopener noreferrer"
+              <a href="https://wa.me/254742855644" target="_blank" rel="noopener noreferrer"
                 class="btn btn-outline-white">
 
                 <i class="fa-brands fa-whatsapp"></i>
@@ -2069,7 +2106,7 @@
                 <span>Call Us</span>
 
                 <a href="tel:+254742855644">
-                  +2547462855644
+                  +254742855644
                 </a>
               </div>
 
@@ -2085,7 +2122,7 @@
               <div>
                 <span>WhatsApp</span>
 
-                <a href="https://wa.me/+254742855644" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/254742855644" target="_blank" rel="noopener noreferrer">
 
                   Chat with us
 
@@ -2146,93 +2183,7 @@
 
 
           <!-- CONTACT FORM -->
-          <form class="contact-form" id="contactForm">
 
-            <div class="form-row">
-
-              <div class="form-group">
-
-                <label for="contactName">
-                  Full Name
-                </label>
-
-                <input type="text" id="contactName" name="name" placeholder="Enter your name" required>
-
-              </div>
-
-
-              <div class="form-group">
-
-                <label for="contactPhone">
-                  Phone Number
-                </label>
-
-                <input type="tel" id="contactPhone" name="phone" placeholder="07XX XXX XXX" required>
-
-              </div>
-
-            </div>
-
-
-            <div class="form-group">
-
-              <label for="contactEmail">
-                Email Address
-              </label>
-
-              <input type="email" id="contactEmail" name="email" placeholder="you@example.com">
-
-            </div>
-
-
-            <div class="form-group">
-
-              <label for="contactService">
-                Service Needed
-              </label>
-
-              <select id="inquireService" required>
-  <option value="">Choose service</option>
-
-  <option value="printing">Printing & Photocopying</option>
-  <option value="scanning">Scanning</option>
-  <option value="computer">Computer Services</option>
-  <option value="graphic">Graphic Design</option>
-  <option value="kra">KRA Services</option>
-  <option value="passport">Passport Photos</option>
-  <option value="online">Online Applications</option>
-  <option value="binding">Binding</option>
-  <option value="lamination">Lamination</option>
-</select>
-
-<!-- Specific service -->
-<select id="specificService" required>
-  <option value="">Choose specific service</option>
-</select>
-
-
-            <div class="form-group">
-
-              <label for="contactMessage">
-                Message
-              </label>
-
-              <textarea id="contactMessage" name="message" rows="5" placeholder="Tell us what you need..."
-                required></textarea>
-
-            </div>
-
-
-            <button type="submit" class="btn btn-primary form-submit">
-
-              <i class="fa-solid fa-paper-plane"></i>
-              Send Message
-
-            </button>
-
-            <div class="form-message" id="contactMessageStatus"></div>
-
-          </form>
 
         </div>
 
@@ -2288,7 +2239,7 @@
               <i class="fa-brands fa-tiktok"></i>
             </a>
 
-            <a href="https://wa.me/+254742855644" aria-label="WhatsApp">
+            <a href="https://wa.me/254742855644" aria-label="WhatsApp">
 
               <i class="fa-brands fa-whatsapp"></i>
 
@@ -2364,7 +2315,7 @@
   <!-- =========================
      WHATSAPP FLOAT
 ========================= -->
-  <a href="https://wa.me/2+254742855644" class="whatsapp-float" target="_blank" rel="noopener noreferrer"
+  <a href="https://wa.me/254742855644" class="whatsapp-float" target="_blank" rel="noopener noreferrer"
     aria-label="Chat with Sanjo Prints on WhatsApp">
 
     <i class="fa-brands fa-whatsapp"></i>
@@ -2409,7 +2360,7 @@
 
       <div>
         <span>GET STARTED</span>
-        <h2 id="orderModalTitle">Make Inquiry</h2>
+        <h2 id="orderModalTitle">Start a Quote</h2>
       </div>
     </div>
 
@@ -2594,276 +2545,11 @@
         </div>
 
       </div>
-
-
-      <!-- =================================
-           STEP 4 — CONTACT + REVIEW
-      ================================== -->
-      <div class="inquiry-step" data-step-content="4">
-
-        <button type="button" class="back-step" data-back="3">
-          <i class="fa-solid fa-arrow-left"></i>
-          Back
-        </button>
-
-        <div class="step-heading">
-
-          <span>STEP 4</span>
-
-          <h3>
-            Review your inquiry
-          </h3>
-
-          <p>
-            Check the details before sending them to Sanjo Prints.
-          </p>
-
-        </div>
-
-
-        <!-- REVIEW -->
-        <div class="inquiry-review" id="inquiryReview">
-        </div>
-
-
-        <!-- CUSTOMER DETAILS -->
-        <div class="customer-details">
-
-          <h4>Your Details</h4>
-
-          <div class="form-row">
-
-            <div class="form-group">
-
-              <label for="inquiryName">
-                Full Name *
-              </label>
-
-              <input
-                type="text"
-                id="inquiryName"
-                name="customerName"
-                placeholder="Your full name"
-                required>
-
-            </div>
-
-
-            <div class="form-group">
-
-              <label for="inquiryPhone">
-                Phone Number *
-              </label>
-
-              <input
-                type="tel"
-                id="inquiryPhone"
-                name="phone"
-                placeholder="07XX XXX XXX"
-                required>
-
-            </div>
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label for="inquiryEmail">
-              Email Address
-            </label>
-
-            <input
-              type="email"
-              id="inquiryEmail"
-              name="email"
-              placeholder="you@example.com">
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label for="preferredOption">
-              Preferred Option
-            </label>
-
-            <select id="preferredOption"
-                    name="preferredOption">
-
-              <option value="Visit the shop">
-                Visit the shop
-              </option>
-
-              <option value="Send documents online">
-                Send documents online
-              </option>
-
-              <option value="Contact me first">
-                Contact me first
-              </option>
-
-            </select>
-
-          </div>
-
-        </div>
-
-
-        <button
-          type="submit"
-          class="btn btn-primary modal-submit">
-
-          <i class="fa-brands fa-whatsapp"></i>
-
-          Send Inquiry via WhatsApp
-
-        </button>
-
-        <p class="modal-note">
-
-          Your inquiry will open WhatsApp with all
-          the selected details already included.
-
-        </p>
-
-      </div>
-
-    </form>
-
-  </div>
-</div>
-
-      <form id="inquiryForm">
-
-        <div class="form-group">
-
-          <label for="inquiryName">
-            Full Name
-          </label>
-
-          <input type="text" id="inquiryName" required placeholder="Your full name">
-
-        </div>
-
-
-        <div class="form-row">
-
-          <div class="form-group">
-
-            <label for="inquirePhone">
-              Phone
-            </label>
-
-            <input type="tel" id="inquirePhone" required placeholder="07XX XXX XXX">
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label for="inquireService">
-              Service
-            </label>
-
-            <select id="inquireService" required>
-
-              <option value="">
-                Choose service
-              </option>
-
-              <option>Printing & Photocopying</option>
-              <option>Scanning</option>
-              <option>Computer Services</option>
-              <option>Graphic Design</option>
-              <option>KRA Services</option>
-              <option>Passport Photos</option>
-              <option>Online Applications</option>
-              <option>Binding</option>
-              <option>Lamination</option>
-
-            </select>
-
-          </div>
-
-        </div>
-
-
-        <div class="form-group">
-
-          <label for="orderDetails">
-            What do you need?
-          </label>
-
-          <textarea id="orderDetails" rows="4" required placeholder="Describe your order..."></textarea>
-
-        </div>
-
-
-        <div class="form-group">
-
-          <label for="makeinquiry">
-            Preferred option
-          </label>
-
-          <select id="makeinquiry">
-
-            <option>
-              Visit the shop
-            </option>
-
-            <option>
-              Send documents online
-            </option>
-
-            <option>
-              Contact me first
-            </option>
-
-          </select>
-
-        </div>
-
-
-        <button type="submit" class="btn btn-primary modal-submit">
-
-          <i class="fa-brands fa-whatsapp"></i>
-          Continue on WhatsApp
-
-        </button>
-
-        <p class="modal-note">
-          Your request will open WhatsApp so you can confirm
-          the details with Sanjo Prints.
-        </p>
-
-      </form>
-
-    </div>
-
-  </div>
-
-
-  <!-- =========================
-     TOAST
-========================= -->
-  <div class="toast" id="toast">
-
-    <i class="fa-solid fa-circle-check"></i>
-
-    <div>
-      <strong>Success</strong>
-      <span id="toastMessage">
-        Your request has been received.
-      </span>
-    </div>
-
-  </div>
-
-
   <!-- JAVASCRIPT -->
   <script src="script.js"></script>
 
 </body>
 
 </html>
+index.html
+HTML
