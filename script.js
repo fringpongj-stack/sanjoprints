@@ -3390,7 +3390,409 @@ document.addEventListener("DOMContentLoaded", function () {
         document.body.style.overflow = "";
 
     }
+// ===============================
+// DYNAMIC INQUIRY / QUOTE SYSTEM
+// ===============================
 
+const inquiryForm = document.getElementById("dynamicInquiryForm");
+const serviceButtons = document.querySelectorAll(".service-choice");
+const subserviceContainer = document.getElementById("subserviceContainer");
+const specificFields = document.getElementById("specificFields");
+
+const selectedServiceText = document.getElementById("selectedServiceText");
+const selectedSubserviceText = document.getElementById("selectedSubserviceText");
+
+let currentStep = 1;
+let selectedService = "";
+let selectedSubservice = "";
+
+// ===============================
+// SERVICES & SUBSERVICES
+// ===============================
+
+const subservices = {
+
+  "Printing & Photocopying": [
+    "Black & White Printing",
+    "Colour Printing",
+    "Photocopying",
+    "Document Printing",
+    "Photo Printing"
+  ],
+
+  "Binding": [
+    "Spiral Binding",
+    "Comb Binding",
+    "Hard Cover Binding",
+    "Soft Cover Binding"
+  ],
+
+  "Lamination": [
+    "A4 Lamination",
+    "A3 Lamination",
+    "ID/Card Lamination"
+  ],
+
+  "Scanning": [
+    "Document Scanning",
+    "Photo Scanning",
+    "Bulk Scanning"
+  ],
+
+  "Graphic Design": [
+    "Poster Design",
+    "Business Card Design",
+    "Logo Design",
+    "Flyer Design",
+    "Banner Design"
+  ],
+
+  "KRA Services": [
+    "KRA PIN Registration",
+    "KRA Returns",
+    "KRA PIN Retrieval",
+    "KRA Account Assistance"
+  ],
+
+  "Passport Photos": [
+    "Passport Photos",
+    "Visa Photos",
+    "ID Photos"
+  ],
+
+  "Online Applications": [
+    "Job Applications",
+    "School Applications",
+    "Government Applications",
+    "Online Form Assistance"
+  ],
+
+  "Stationery": [
+    "Pens",
+    "Books",
+    "Files",
+    "Envelopes",
+    "Other Stationery"
+  ]
+};
+
+
+// ===============================
+// SHOW STEP
+// ===============================
+
+function showStep(step) {
+
+  currentStep = step;
+
+  document.querySelectorAll(".inquiry-step").forEach(section => {
+    section.classList.remove("active");
+  });
+
+  const target = document.querySelector(
+    `[data-step-content="${step}"]`
+  );
+
+  if (target) {
+    target.classList.add("active");
+  }
+
+  document.querySelectorAll(".progress-step").forEach(stepElement => {
+
+    const number = Number(stepElement.dataset.step);
+
+    stepElement.classList.toggle(
+      "active",
+      number <= step
+    );
+
+  });
+}
+
+
+// ===============================
+// STEP 1 — SELECT SERVICE
+// ===============================
+
+serviceButtons.forEach(button => {
+
+  button.addEventListener("click", function () {
+
+    selectedService = this.dataset.service;
+
+    selectedServiceText.textContent = selectedService;
+
+    // Clear previous subservice
+    subserviceContainer.innerHTML = "";
+
+    const options = subservices[selectedService] || [
+      "General Inquiry"
+    ];
+
+    options.forEach(option => {
+
+      const subButton = document.createElement("button");
+
+      subButton.type = "button";
+      subButton.className = "subservice-choice";
+
+      subButton.innerHTML = `
+        <span>${option}</span>
+        <i class="fa-solid fa-chevron-right"></i>
+      `;
+
+      subButton.addEventListener("click", function () {
+
+        selectedSubservice = option;
+
+        selectedSubserviceText.textContent =
+          selectedSubservice;
+
+        createSpecificFields();
+
+        showStep(3);
+
+      });
+
+      subserviceContainer.appendChild(subButton);
+
+    });
+
+    showStep(2);
+
+  });
+
+});
+
+
+// ===============================
+// STEP 2 / 3 BACK BUTTON
+// ===============================
+
+document.querySelectorAll(".back-step").forEach(button => {
+
+  button.addEventListener("click", function () {
+
+    const backTo = Number(this.dataset.back);
+
+    showStep(backTo);
+
+  });
+
+});
+
+
+// ===============================
+// CREATE SPECIFIC FIELDS
+// ===============================
+
+function createSpecificFields() {
+
+  specificFields.innerHTML = "";
+
+  specificFields.innerHTML = `
+
+    <div class="form-group">
+      <label>Your Name</label>
+      <input
+        type="text"
+        id="customerName"
+        placeholder="Enter your name"
+        required
+      >
+    </div>
+
+    <div class="form-group">
+      <label>Phone Number</label>
+      <input
+        type="tel"
+        id="customerPhone"
+        placeholder="Enter your phone number"
+        required
+      >
+    </div>
+
+    <div class="form-group">
+      <label>Quantity</label>
+      <input
+        type="number"
+        id="quantity"
+        placeholder="e.g. 20"
+        min="1"
+      >
+    </div>
+
+    <div class="form-group">
+      <label>Additional Details</label>
+      <textarea
+        id="orderDetails"
+        rows="5"
+        placeholder="Tell us exactly what you need..."
+        required
+      ></textarea>
+    </div>
+
+    <div class="form-actions">
+
+      <button
+        type="button"
+        class="back-step"
+        data-back="2"
+      >
+        <i class="fa-solid fa-arrow-left"></i>
+        Back
+      </button>
+
+      <button
+        type="button"
+        id="continueToContact"
+        class="continue-btn"
+      >
+        Continue
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+
+    </div>
+  `;
+
+  // IMPORTANT:
+  // The Continue button is created dynamically,
+  // so we attach its event listener AFTER creating it.
+
+  document
+    .getElementById("continueToContact")
+    .addEventListener("click", function () {
+
+      const name =
+        document.getElementById("customerName").value.trim();
+
+      const phone =
+        document.getElementById("customerPhone").value.trim();
+
+      const quantity =
+        document.getElementById("quantity").value.trim();
+
+      const details =
+        document.getElementById("orderDetails").value.trim();
+
+
+      // Validation
+
+      if (!name) {
+        alert("Please enter your name.");
+        return;
+      }
+
+      if (!phone) {
+        alert("Please enter your phone number.");
+        return;
+      }
+
+      if (!details) {
+        alert("Please describe what you need.");
+        return;
+      }
+
+
+      // ===============================
+      // CREATE WHATSAPP MESSAGE
+      // ===============================
+
+      const message =
+
+`Hello Sanjo Prints 👋
+
+I would like to request a quote.
+
+*SERVICE*
+${selectedService}
+
+*WHAT I NEED*
+${selectedSubservice}
+
+*CUSTOMER DETAILS*
+Name: ${name}
+Phone: ${phone}
+
+*QUANTITY*
+${quantity || "Not specified"}
+
+*ADDITIONAL DETAILS*
+${details}
+
+Please provide me with a quotation and let me know the next steps.
+
+Thank you.`;
+
+
+      // ===============================
+      // SANJO WHATSAPP NUMBER
+      // ===============================
+
+      const whatsappNumber = "254742855644";
+
+
+      // Encode message so spaces,
+      // symbols and line breaks work correctly
+
+      const whatsappURL =
+        `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+
+      // Open WhatsApp
+
+      window.open(whatsappURL, "_blank");
+
+    });
+
+
+  // Re-enable the dynamically-created Back button
+
+  const dynamicBack =
+    specificFields.querySelector(".back-step");
+
+  dynamicBack.addEventListener("click", function () {
+    showStep(Number(this.dataset.back));
+  });
+
+}
+
+
+// ===============================
+// MODAL CLOSE
+// ===============================
+
+const modalClose =
+  document.getElementById("modalClose");
+
+if (modalClose) {
+
+  modalClose.addEventListener("click", function () {
+
+    document
+      .getElementById("orderModal")
+      .classList.remove("active");
+
+  });
+
+}
+
+
+// ===============================
+// ESC KEY CLOSE
+// ===============================
+
+document.addEventListener("keydown", function(event) {
+
+  if (event.key === "Escape") {
+
+    document
+      .getElementById("orderModal")
+      .classList.remove("active");
+
+  }
+
+});
 
     /* =========================
        X BUTTON
