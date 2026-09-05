@@ -59,15 +59,35 @@ function initializeLoader() {
 
     if (!loader) return;
 
-    window.addEventListener("load", () => {
+  let hasHidden = false;
 
-        setTimeout(() => {
+  const hideLoader = () => {
 
-            loader.classList.add("hide");
+    if (hasHidden) return;
 
-        }, 500);
+    hasHidden = true;
+    loader.classList.add("hide");
 
-    });
+  };
+
+  const hideAfterLoading = () => {
+
+    setTimeout(hideLoader, 500);
+
+  };
+
+  if (document.readyState === "complete") {
+
+    hideAfterLoading();
+
+  } else {
+
+    window.addEventListener("load", hideAfterLoading, { once: true });
+
+    // Keep a failed external asset from blocking the whole page.
+    setTimeout(hideAfterLoading, 2500);
+
+  }
 
 }
 
@@ -753,6 +773,17 @@ function openOrderModal(
 
     if (!modal) return;
 
+    document.querySelectorAll(".inquiry-step").forEach(step => {
+      const isFirstStep = step.dataset.stepContent === "1";
+
+      step.classList.toggle("active", isFirstStep);
+      step.style.display = isFirstStep ? "block" : "none";
+    });
+
+    document.querySelectorAll(".progress-step").forEach(step => {
+      step.classList.toggle("active", step.dataset.step === "1");
+    });
+
 
     if (
         selectedService &&
@@ -768,6 +799,8 @@ function openOrderModal(
     modal.classList.add(
         "active"
     );
+
+    modal.style.display = "grid";
 
 
     document.body.classList.add(
@@ -811,6 +844,8 @@ function closeOrderModal() {
     modal.classList.remove(
         "active"
     );
+
+    modal.style.display = "none";
 
 
     document.body.classList.remove(
@@ -1916,10 +1951,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const selectedSubserviceText =
     document.getElementById("selectedSubserviceText");
 
-  const inquiryReview =
-    document.getElementById("inquiryReview");
-
-
   /* ==========================================================
      CHANGE STEP
   ========================================================== */
@@ -1932,6 +1963,11 @@ document.addEventListener("DOMContentLoaded", () => {
         "active",
         Number(step.dataset.stepContent) === number
       );
+
+      step.style.display =
+        Number(step.dataset.stepContent) === number
+          ? "block"
+          : "none";
 
     });
 
@@ -3032,171 +3068,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* ==========================================================
-     NEXT FROM STEP 3
-  ========================================================== */
-
-  const step3 =
-    document.querySelector(
-      '[data-step-content="3"]'
-    );
-
-
-  const nextButton =
-    document.createElement("button");
-
-  nextButton.type = "button";
-
-  nextButton.className =
-    "btn btn-primary";
-
-  nextButton.innerHTML =
-    `Continue <i class="fa-solid fa-arrow-right"></i>`;
-
-
-  step3.appendChild(nextButton);
-
-
-  nextButton.addEventListener("click", () => {
-
-    if (!validateSpecificFields()) {
-      return;
-    }
-
-    collectSpecificDetails();
-
-    buildReview();
-
-    goToStep(4);
-
-  });
-
-
-  /* ==========================================================
-     VALIDATE STEP 3
-  ========================================================== */
-
-  function validateSpecificFields() {
-
-    const fields =
-      specificFields.querySelectorAll(
-        "input, select, textarea"
-      );
-
-    for (const field of fields) {
-
-      if (
-        field.hasAttribute("required") &&
-        !field.value.trim()
-      ) {
-
-        field.focus();
-
-        field.reportValidity();
-
-        return false;
-
-      }
-
-    }
-
-    return true;
-
-  }
-
-
-  /* ==========================================================
-     COLLECT DETAILS
-  ========================================================== */
-
-  function collectSpecificDetails() {
-
-    inquiry.details = {};
-
-    const fields =
-      specificFields.querySelectorAll(
-        "input, select, textarea"
-      );
-
-
-    fields.forEach(field => {
-
-      if (field.type === "file") {
-
-        if (field.files.length) {
-
-          inquiry.details[field.name] =
-            field.files[0].name;
-
-        }
-
-      }
-
-      else if (field.value.trim()) {
-
-        inquiry.details[field.name] =
-          field.value.trim();
-
-      }
-
-    });
-
-  }
-
-
-  /* ==========================================================
-     REVIEW
-  ========================================================== */
-
-  function buildReview() {
-
-    let html = `
-
-      <div class="review-title">
-        Your Service
-      </div>
-
-      <div class="review-row">
-        <span>Service</span>
-        <strong>${escapeHtml(inquiry.service)}</strong>
-      </div>
-
-      <div class="review-row">
-        <span>Specific Service</span>
-        <strong>${escapeHtml(inquiry.subservice)}</strong>
-      </div>
-
-    `;
-
-
-    Object.entries(inquiry.details)
-      .forEach(([key, value]) => {
-
-        const label =
-          formatLabel(key);
-
-        html += `
-
-          <div class="review-row">
-
-            <span>${escapeHtml(label)}</span>
-
-            <strong>
-              ${escapeHtml(value)}
-            </strong>
-
-          </div>
-
-        `;
-
-      });
-
-
-    inquiryReview.innerHTML = html;
-
-  }
-
-
-  /* ==========================================================
      FORMAT FIELD LABEL
   ========================================================== */
 
@@ -3384,7 +3255,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         orderModal.classList.remove("active");
         orderModal.classList.remove("open");
-        orderModal.style.display = "none";
 
         document.body.classList.remove("modal-open");
         document.body.style.overflow = "";
@@ -3487,6 +3357,7 @@ function showStep(step) {
 
   document.querySelectorAll(".inquiry-step").forEach(section => {
     section.classList.remove("active");
+    section.style.display = "none";
   });
 
   const target = document.querySelector(
@@ -3495,6 +3366,16 @@ function showStep(step) {
 
   if (target) {
     target.classList.add("active");
+    target.style.display = "block";
+  }
+
+  const modal = document.querySelector(".dynamic-inquiry-modal");
+
+  if (modal) {
+    modal.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
   }
 
   document.querySelectorAll(".progress-step").forEach(stepElement => {
@@ -3593,21 +3474,25 @@ function createSpecificFields() {
   specificFields.innerHTML = `
 
     <div class="form-group">
-      <label>Your Name</label>
+      <label for="customerName">Your Name</label>
       <input
         type="text"
         id="customerName"
+        name="customerName"
         placeholder="Enter your name"
+        autocomplete="name"
         required
       >
     </div>
 
     <div class="form-group">
-      <label>Phone Number</label>
+      <label for="customerPhone">Phone Number</label>
       <input
         type="tel"
         id="customerPhone"
+        name="customerPhone"
         placeholder="Enter your phone number"
+        autocomplete="tel"
         required
       >
     </div>
@@ -3648,7 +3533,7 @@ function createSpecificFields() {
         id="continueToContact"
         class="continue-btn"
       >
-        Continue
+        Send Quote on WhatsApp
         <i class="fa-solid fa-arrow-right"></i>
       </button>
 
@@ -3739,9 +3624,9 @@ Thank you.`;
         `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
 
-      // Open WhatsApp
+      // Navigate directly so browser popup blocking cannot prevent delivery.
 
-      window.open(whatsappURL, "_blank");
+      window.location.href = whatsappURL;
 
     });
 
@@ -3762,12 +3647,12 @@ Thank you.`;
 // MODAL CLOSE
 // ===============================
 
-const modalClose =
+const modalCloseButton =
   document.getElementById("modalClose");
 
-if (modalClose) {
+if (modalCloseButton) {
 
-  modalClose.addEventListener("click", function () {
+  modalCloseButton.addEventListener("click", function () {
 
     document
       .getElementById("orderModal")
