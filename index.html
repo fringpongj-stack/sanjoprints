@@ -176,7 +176,7 @@
           Contact
         </a>
 
-        <a href="#order" class="nav-start a quote">
+        <a href="#order" class="nav-start quote">
           <i class="fa-solid fa-paper-plane"></i>
           START A QUOTE
         </a>
@@ -2141,7 +2141,7 @@
               <div>
                 <span>Email</span>
 
-                <a href="sanjocyber@gmail.com">
+                <a href="mailto:sanjocyber@gmail.com">
                   sanjocyber@gmail.com
                 </a>
               </div>
@@ -2515,7 +2515,6 @@
 
       </div>
 
-
       <!-- =================================
            STEP 3 — SPECIFIC DETAILS
       ================================== -->
@@ -2545,6 +2544,155 @@
         </div>
 
       </div>
+
+
+      <!-- =================================
+           STEP 4 — CONTACT & REVIEW
+      ================================== -->
+      <div class="inquiry-step" data-step-content="4">
+
+        <button type="button" class="back-step" data-back="3">
+          <i class="fa-solid fa-arrow-left"></i>
+          Back
+        </button>
+
+        <div class="step-heading">
+
+          <span>STEP 4</span>
+
+          <h3>
+            Review Your Inquiry
+          </h3>
+
+          <p>
+            Check your details before sending your request.
+          </p>
+
+        </div>
+
+
+        <!-- REVIEW -->
+        <div id="inquiryReview" class="inquiry-review">
+
+          <!-- JavaScript builds the review here -->
+
+        </div>
+
+
+        <!-- CUSTOMER DETAILS -->
+        <div class="customer-details">
+
+          <div class="form-group">
+
+            <label for="inquiryName">
+              Your Name *
+            </label>
+
+            <input
+              type="text"
+              id="inquiryName"
+              name="name"
+              placeholder="Enter your name"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="inquiryPhone">
+              Phone Number *
+            </label>
+
+            <input
+              type="tel"
+              id="inquiryPhone"
+              name="phone"
+              placeholder="07XXXXXXXX"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="inquiryEmail">
+              Email Address
+            </label>
+
+            <input
+              type="email"
+              id="inquiryEmail"
+              name="email"
+              placeholder="example@email.com"
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="preferredOption">
+              Preferred Contact Method
+            </label>
+
+            <select
+              id="preferredOption"
+              name="preferred"
+            >
+
+              <option value="WhatsApp">
+                WhatsApp
+              </option>
+
+              <option value="Phone Call">
+                Phone Call
+              </option>
+
+              <option value="Email">
+                Email
+              </option>
+
+            </select>
+
+          </div>
+
+        </div>
+
+
+        <!-- SEND -->
+        <div class="inquiry-submit-area">
+
+          <button
+            type="submit"
+            class="btn btn-primary"
+          >
+
+            <i class="fa-brands fa-whatsapp"></i>
+
+            Send Inquiry on WhatsApp
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<!-- JAVASCRIPT -->
+<script src="script.js"></script>
+
+</body>
+
+</html>
   <!-- JAVASCRIPT -->
   <script src="script.js"></script>
 
