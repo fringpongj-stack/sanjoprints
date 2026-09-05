@@ -4400,6 +4400,8 @@ ul {
     padding: 9px 16px;
     font-size: 13px;
   }
+}
+
    /* =========================================================
    EXPANDABLE SERVICE SUB-SERVICES
 ========================================================= */
@@ -4566,6 +4568,8 @@ ul {
     padding: 12px 8px;
     font-size: 12px;
   }
+}
+
 .location-link {
   display: inline-flex;
   align-items: center;
@@ -4665,6 +4669,10 @@ ul {
 
 .inquiry-step {
   display: none;
+}
+
+.inquiry-step:not(.active) {
+  display: none !important;
 }
 
 .inquiry-step.active {
